@@ -1,0 +1,82 @@
+create database assingment;
+use assingment;
+create table employee(
+employee_name varchar(20),
+street int(10),
+city varchar(20));
+create table works(
+employee_name varchar(20),
+company_name varchar(20),
+salary int(10));
+create table company(
+compant_name varchar(20),
+city varchar(20));
+create table maneges(
+employee_name varchar(20),
+maneger_name varchar(20));
+insert into employee
+value('sahib',1,'delhi');
+insert into employee
+value('mukesh',1,'delhi');
+insert into employee
+value('shubham',2,'delhi');
+insert into employee
+value('suraj',5,'rohtak');
+insert into employee
+value('saurabh',3,'sonipat');
+insert into employee
+value('himashu',6,'hissar');
+insert into employee
+value('bhawesh',2,'delhi');
+select * from employee;
+insert into works
+value('sahib','First bank ',12000);
+insert into works
+value('mukesh','First bank ',18000);
+insert into works
+value('shubham','small bank ',6000);
+insert into works
+value('saurabh','big bank ',5000);
+insert into works
+value('suraj','First bank ',11000);
+insert into works
+value('bhawesh','small bank ',9000);
+insert into works
+value('himanshu','big bank ',8000);
+select * from works;
+insert into company
+value('small bank','delhi');
+insert into company
+value('first bank','delhi');
+insert into company
+value('big bank','sonipat');
+select * from company;
+insert into maneges
+value('sahib','mukesh');
+insert into maneges
+value('shubham','bhawesh');
+insert into maneges
+value('saurabh','himanshu');
+insert into maneges
+value('suraj','mukesh');
+select * from  employee;
+select * from  works;
+select * from  company;
+select * from  maneges;
+UPDATE employee set employee_name='himanshu' where city='hissar';
+update works set salary = 9500 where employee_name='suraj';
+update works set company_name = 'first bank' where employee_name='sahib';
+update works set company_name = 'first bank' where employee_name='suraj';
+update works set company_name = 'first bank' where employee_name='mukesh';
+update works set company_name = 'small bank' where employee_name='shubham';
+update works set company_name = 'small bank' where employee_name='bhawesh';
+update works set company_name = 'big bank' where employee_name='saurabh';
+update works set company_name = 'big bank' where employee_name='himanshu';
+-- query ans--
+-- a-- 
+ select * from employee where employee_name in
+ (select employee_name from works where salary>10000 and company_name='first bank');
+--  query ans--   
+ -- b--
+  select company_name , city from works w where company_name in
+ (select employee_name , company_name from works where company_name in(select city from company );
